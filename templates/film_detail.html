@@ -1,0 +1,19 @@
+<p>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="title" value="{{ film.title }}" name="title">
+    <input type="number" placeholder="year" value="{{ film.year }}" name="year">
+    <select name="director">
+        {% for person in persons %}
+            <option value="{{ person.id }}"> {{ person }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit">
+</form>
+</p>
+
+
+<p>
+<h1>{{ film.title }}</h1>
+<h5>{{ film.year }} {{ film.director }}</h5>
+</p>
