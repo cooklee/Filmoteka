@@ -1,7 +1,11 @@
 
-<ul>
-    {% for film in filmy %}
-        <li>{{ film.title }} {{ film.year }}</li>
-    {% endfor %}
 
-</ul>
+<p>
+    <form>
+        <input type="text" placeholder="title" name="title">
+        <input type="text" placeholder="year" name="year">
+        <input type="submit">
+    </form>
+</p>
+
+{% include 'list_view.html' %}

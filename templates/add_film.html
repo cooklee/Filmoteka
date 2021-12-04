@@ -1,6 +1,22 @@
 <form method="post">
     {% csrf_token %}
-    <input type="text" placeholder="title" name="title">
-    <input type="number" placeholder="year" name="year">
-    <input type="submit">
+    <P><input type="text" placeholder="title" name="title"></P>
+    <p><input type="number" placeholder="year" name="year"></p>
+    <p>
+        <select name="director">
+            {% for osoba in osoby %}
+                <option value="{{ osoba.id }}">{{ osoba }}</option>
+            {% endfor %}
+        </select>
+
+    </p>
+    <p>
+    <ul>
+        {% for g in genre %}
+            <li><input type="checkbox" name="genre" value="{{ g.id }}">{{ g }}</li>
+        {% endfor %}
+    </ul>
+
+    </p>
+    <p><input type="submit"></p>
 </form>
