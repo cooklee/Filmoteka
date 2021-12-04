@@ -19,6 +19,9 @@ class Person(models.Model):
     def get_absolute_url(self):
         return f"/osoby/{self.id}/"
 
+    def get_delete_url(self):
+        return f"/delete_osoby/{self.id}/"
+
 class Film(models.Model):
     title = models.CharField(max_length=50)
     year = models.IntegerField()

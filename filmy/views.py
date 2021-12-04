@@ -85,3 +85,11 @@ def add_genre(request):
 def genre(request):
     genre = Genre.objects.all()
     return render(request, 'list_view.html', {'object_list':genre})
+
+
+def delete_osoby(request, pk):
+    person = Person.objects.get(pk=pk)
+    if request.method == 'GET':
+        return render(request, 'delete_template.html', {'object':person})
+    person.delete()
+    return redirect('/osoby/')

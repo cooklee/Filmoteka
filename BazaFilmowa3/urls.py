@@ -29,4 +29,5 @@ urlpatterns = [
     path('film/<int:pk>/', views.film_detail),
     path('add_genre/', views.add_genre ),
     path('genre/', views.genre),
+    path('delete_osoby/<int:pk>/', views.delete_osoby )
 ]
