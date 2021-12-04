@@ -62,7 +62,8 @@ def film_detail(request, pk):
         film.director = director
         film.save()
     persons = Person.objects.all()
-    return render(request,'film_detail.html', {'film':film, 'persons':persons})
+    genre = Genre.objects.all()
+    return render(request,'film_detail.html', {'film':film, 'persons':persons, 'genre':genre})
 
 
 def add_genre(request):

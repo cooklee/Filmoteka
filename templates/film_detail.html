@@ -5,7 +5,11 @@
     <input type="number" placeholder="year" value="{{ film.year }}" name="year">
     <select name="director">
         {% for person in persons %}
-            <option value="{{ person.id }}"> {{ person }}</option>
+            <option value="{{ person.id }}"
+            {% if film.director == person %}
+               selected
+            {% endif %}
+            > {{ person }}</option>
         {% endfor %}
     </select>
     <input type="submit">
