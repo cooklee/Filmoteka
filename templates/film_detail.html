@@ -1,18 +1,29 @@
 <p>
-<form method="post">
-    {% csrf_token %}
-    <input type="text" placeholder="title" value="{{ film.title }}" name="title">
-    <input type="number" placeholder="year" value="{{ film.year }}" name="year">
-    <select name="director">
-        {% for person in persons %}
-            <option value="{{ person.id }}"
-            {% if film.director == person %}
-               selected
-            {% endif %}
-            > {{ person }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit">
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="title" value="{{ film.title }}" name="title">
+        <input type="number" placeholder="year" value="{{ film.year }}" name="year">
+        <select name="director">
+            {% for person in persons %}
+                <option value="{{ person.id }}"
+                        {% if film.director == person %}
+                        selected
+                        {% endif %}
+                > {{ person }}</option>
+            {% endfor %}
+        </select>
+<p>
+<ul>
+    {% for g in genre %}
+        <li><input type="checkbox" name="genre"
+                {% if g in film.genre.all %}
+                   checked
+                {% endif %}
+                   value="{{ g.id }}"> {{ g }} </li>
+    {% endfor %}
+</ul>
+</p>
+<input type="submit">
 </form>
 </p>
 
@@ -20,4 +31,11 @@
 <p>
 <h1>{{ film.title }}</h1>
 <h5>{{ film.year }} {{ film.director }}</h5>
+<h5>gatunki:
+
+    {% for g in film.genre.all %}
+        {{ g }}
+    {% endfor %}
+
+</h5>
 </p>

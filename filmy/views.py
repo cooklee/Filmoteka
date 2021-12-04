@@ -18,6 +18,12 @@ def show_osoby(request):
     osoby = osoby.filter(first_name__icontains=imie)
     return render(request,'osoby.html', {'object_list':osoby})
 
+def osoba_detail(request, pk):
+    osoba = Person.objects.get(pk=pk)
+    return render(request, 'osoba.html', {'osoba':osoba})
+
+
+
 
 def add_osoba(request):
     if request.method == 'GET':
@@ -60,6 +66,8 @@ def film_detail(request, pk):
         film.title = title
         film.year = year
         film.director = director
+        genre_ids = request.POST.getlist('genre')
+        film.genre.set(genre_ids)
         film.save()
     persons = Person.objects.all()
     genre = Genre.objects.all()

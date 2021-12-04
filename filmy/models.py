@@ -16,6 +16,9 @@ class Person(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+    def get_absolute_url(self):
+        return f"/osoby/{self.id}/"
+
 class Film(models.Model):
     title = models.CharField(max_length=50)
     year = models.IntegerField()
@@ -25,4 +28,7 @@ class Film(models.Model):
     def __str__(self):
         return f"{self.title} {self.year}"
 
+
+    def get_absolute_url(self):
+        return f"/film/{self.id}/"
 
