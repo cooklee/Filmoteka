@@ -121,9 +121,27 @@ class SessionFunView(View):
         request.session['zabawa'] = True
         return render(request, 'sessje.html')
 
+class CookieeMonsterFunView(View):
+    def get(self, request):
+        response = render(request, 'sessje.html')
+        response.set_cookie("zabawa", 1596)
+        return response
+
 class ShowSession(View):
     def get(self, request):
         return render(request, 'show_session.html')
+
+
+class ShowCookiee(View):
+    def get(self, request):
+        y = request.COOKIE['zabawa']
+        return HttpResponse(f"pod zabawa miesci sie {y}")
+
+class DeleteCookiee(View):
+    def get(self, request):
+        response = HttpResponse()
+        response.delete_cookie('zabawa')
+        return response
 
 
 
