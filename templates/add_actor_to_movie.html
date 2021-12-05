@@ -1,0 +1,20 @@
+<form method="post">
+    {% csrf_token %}
+    <p><select name="actor">
+        {% for p in persons %}
+            <option value="{{ p.id }}">{{ p }}</option>
+        {% endfor %}
+    </select></p>
+    <p><input type="text" placeholder="Rola" name="role"></p>
+    <p><input type="submit"></p>
+</form>
+
+
+<p>{{ film.title }}</p>
+<p>
+<ul>
+    {% for st in film.starring.all %}
+        <li>{{ st.actor }} jako {{ st.role }}</li>
+    {% endfor%}
+</ul>
+</p>

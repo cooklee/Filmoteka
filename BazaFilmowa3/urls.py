@@ -27,6 +27,7 @@ urlpatterns = [
     path('filmy/', views.show_filmy),
     path('add_filmy/', views.add_filmy),
     path('film/<int:pk>/', views.film_detail),
+    path('film/<int:film_pk>/add_actor/', views.AddActorToMovie.as_view()),
     path('add_genre/', views.add_genre ),
     path('genre/', views.genre),
     path('delete_osoby/<int:pk>/', views.delete_osoby )

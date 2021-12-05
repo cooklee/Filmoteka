@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from filmy.models import Person, Film, Genre
+from django.views import View
+
+from filmy.models import Person, Film, Genre, Starring
 
 
 def index(request):
@@ -21,9 +23,6 @@ def show_osoby(request):
 def osoba_detail(request, pk):
     osoba = Person.objects.get(pk=pk)
     return render(request, 'osoba.html', {'osoba':osoba})
-
-
-
 
 def add_osoba(request):
     if request.method == 'GET':
@@ -73,6 +72,14 @@ def film_detail(request, pk):
     genre = Genre.objects.all()
     return render(request,'film_detail.html', {'film':film, 'persons':persons, 'genre':genre})
 
+class AddGenreView(View):
+    def get(self, request):
+        return render(request, 'add_genre.html')
+
+    def post(self, request):
+        name = request.POST.get('name')
+        Genre.objects.create(name=name)
+        return redirect('/genre/')
 
 def add_genre(request):
     if request.method == 'GET':
@@ -93,3 +100,17 @@ def delete_osoby(request, pk):
         return render(request, 'delete_template.html', {'object':person})
     person.delete()
     return redirect('/osoby/')
+
+
+class AddActorToMovie(View):
+    def get(self, request, film_pk):
+        persons = Person.objects.all()
+        return render(request, 'add_actor_to_movie.html', {'persons':persons, 'film':Film.objects.get(pk=film_pk)})
+
+    def post(self, request, film_pk):
+        film = Film.objects.get(pk=film_pk)
+        person_id = request.POST.get('actor')
+        role = request.POST.get('role')
+        person = Person.objects.get(pk=person_id)
+        Starring.objects.create(film=film, actor=person, role=role)
+        return redirect(f'/film/{film_pk}/add_actor/')
