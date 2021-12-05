@@ -30,5 +30,7 @@ urlpatterns = [
     path('film/<int:film_pk>/add_actor/', views.AddActorToMovie.as_view()),
     path('add_genre/', views.add_genre ),
     path('genre/', views.genre),
-    path('delete_osoby/<int:pk>/', views.delete_osoby )
+    path('delete_osoby/<int:pk>/', views.delete_osoby ),
+    path('set_session/', views.SessionFunView.as_view()),
+    path('show_session/', views.ShowSession.as_view()),
 ]

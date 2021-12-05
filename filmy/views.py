@@ -114,3 +114,21 @@ class AddActorToMovie(View):
         person = Person.objects.get(pk=person_id)
         Starring.objects.create(film=film, actor=person, role=role)
         return redirect(f'/film/{film_pk}/add_actor/')
+
+
+class SessionFunView(View):
+    def get(self, request):
+        request.session['zabawa'] = True
+        return render(request, 'sessje.html')
+
+class ShowSession(View):
+    def get(self, request):
+        return render(request, 'show_session.html')
+
+
+
+
+
+
+
+
