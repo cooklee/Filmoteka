@@ -123,7 +123,7 @@ class SessionFunView(View):
 
 class CookieeMonsterFunView(View):
     def get(self, request):
-        response = render(request, 'sessje.html')
+        response = render(request, 'sessje.html', {'ala':"makota"})
         response.set_cookie("zabawa", 1596)
         return response
 
@@ -139,14 +139,6 @@ class ShowCookiee(View):
 
 class DeleteCookiee(View):
     def get(self, request):
-        response = HttpResponse()
+        response = HttpResponse("ciasteczko zjedzone")
         response.delete_cookie('zabawa')
         return response
-
-
-
-
-
-
-
-

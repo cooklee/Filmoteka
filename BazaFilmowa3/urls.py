@@ -33,4 +33,6 @@ urlpatterns = [
     path('delete_osoby/<int:pk>/', views.delete_osoby ),
     path('set_session/', views.SessionFunView.as_view()),
     path('show_session/', views.ShowSession.as_view()),
+    path('cookiemonster/', views.CookieeMonsterFunView.as_view()),
+    path("delete_cookie/",views.DeleteCookiee.as_view())
 ]
